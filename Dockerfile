@@ -8,7 +8,6 @@ ENV TERRARIA_DIR=/terraria/
 ENV PATH="${TERRARIA_DIR}:${PATH}"
 
 RUN mkdir -p ${TERRARIA_DIR}
-RUN chmod 777 ${TERRARIA_DIR}
 
 WORKDIR ${TERRARIA_DIR}
 
@@ -69,7 +68,7 @@ ENTRYPOINT [ "./init-TerrariaServer-amd64.sh" ]
 
 FROM mono:latest AS build-arm64
 
-ENV TERRARIA_DIR=/root/.local/share/Terraria
+ENV TERRARIA_DIR=/terraria
 
 ENV PATH="${TERRARIA_DIR}:${PATH}" \
     autocreate=1 \
@@ -89,6 +88,7 @@ ENV PATH="${TERRARIA_DIR}:${PATH}" \
     priority=1
 
 RUN mkdir -p ${TERRARIA_DIR}
+RUN chmod 777 ${TERRARIA_DIR}
 
 WORKDIR ${TERRARIA_DIR}
 
